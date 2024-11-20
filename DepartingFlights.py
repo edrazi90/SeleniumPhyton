@@ -1,6 +1,5 @@
-import sys
-sys.path.Append("SeleniumPython")
-import Main.py
+from ..SeleniumPhyton import Main
+
 
 
 
