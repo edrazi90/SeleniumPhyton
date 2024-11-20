@@ -52,26 +52,6 @@ WebDriverWait(driver, 15).until(
 )
 
 
-
-"""
-#Press login section and login to the system
-login.click()
-time.sleep(5)
-
-#Login banner paremeter
-mailTextbox = driver.find_element(By.ID,"text-input--login")
-passwordTextbox =driver.find_element(By.ID,"password-input--login")
-loginButton = driver.find_element(By.ID,"loginbutton")
-
-WebDriverWait(driver, 10).until(EC.element_to_be_clickable(mailTextbox))
-mailTextbox.send_keys(userName)
-time.sleep(5)
-passwordTextbox.send_keys(password)
-time.sleep(5)
-loginButton.click()
-time.sleep(5)
-"""
-
 """
 #Select trip type
 WebDriverWait(driver, 5).until(EC.element_to_be_clickable(tripType))
