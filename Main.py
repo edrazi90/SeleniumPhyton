@@ -25,8 +25,8 @@ userName = "user@yahoo.com.my"
 password = "password121"
 home = "Johor Baharu"
 travelDestination = "Singapore"
-departDate = "2024-12-15" 
-returnDate = "2024-12-20"
+departDate = "29122024"#DDMMYY 
+returnDate = "03122024"#DDMMYY 
 passengerTotal = "2"
 
 
@@ -39,7 +39,7 @@ driver.maximize_window()
 login = driver.find_element(By.ID,"login-component")
 tripType = driver.find_element(By.ID,"home_triptype")
 paxSection = driver.find_element(By.ID,"airasia-dropdown-options-title")
-origin = driver.find_element(By.ID,"flight-place-picker")
+origin = driver.find_element(By.ID,"origin")
 destination = driver.find_element(By.ID,"home_flyingfrom")
 depart_date = driver.find_element(By.ID,"departclick-handle")
 return_date = driver.find_element(By.ID,"returnclick-handle")
@@ -99,6 +99,7 @@ destination.sendKeys(Keys.DELETE)
 """
 
 #Input origin 
+
 WebDriverWait(driver, 5).until(EC.element_to_be_clickable(origin))  # Ensure the element is clickable
 origin.click()
 time.sleep(5)
@@ -109,19 +110,29 @@ time.sleep(5)
 
 origin.click()
 time.sleep(5)
-origin.clear()
+clearOrigin = driver.find_element(By.ID,"flight-place-picker").clear()
+time.sleep(5)
 origin.send_keys(home)
 WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//ul[contains(@class, 'suggestions')]")))  # Wait for suggestions to appear
 origin.send_keys(Keys.ENTER)
+
 
 #Input destination
 WebDriverWait(driver, 5).until(EC.element_to_be_clickable(destination))
 destination.click()
 time.sleep(5)
+"""
+promoBanner = driver.find_element(By.ID,"wzrk-cancel")#Click cancel when promo banner appeared
+promoBanner.click()
+"""
+time.sleep(5)
 destination.clear()
 destination.send_keys(travelDestination)
-WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.XPATH, "//ul[contains(@class, 'suggestions')]")))  # Wait for suggestions to appear
+"""
+WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//ul[contains(@class, 'suggestions')]")))  # Wait for suggestions to appear
+"""
 destination.send_keys(Keys.ENTER)
+time.sleep(5)
 
 #Input depart and destination date 
 WebDriverWait(driver, 5).until(EC.element_to_be_clickable(depart_date))
@@ -141,7 +152,4 @@ passenger_input.send_keys(Keys.ENTER)
 #Click search button
 search_button.click()
 WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "flight-results")))
-
-webdriver.s
-
 
